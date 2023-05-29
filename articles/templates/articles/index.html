@@ -8,7 +8,7 @@
 </head>
 <body>
   <h1>Articles</h1>
-  <a href="{% url 'articles:new' %}">[글 등록하기]</a>
+  <a href="{% url 'articles:create' %}">[글 등록하기]</a>
   <hr>
   {% for article in articles %}
     <p>제목 : 
