@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Article
 from .forms import ArticleForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def index(request) :
@@ -64,7 +66,7 @@ def detail(request, pk):
 
     # 생성한 글의 단일 조회 주소로 이동 응답
 
-
+@login_required
 def create(request) :
     # HTTP requests method POST 라면
     if request.method == 'POST' :
@@ -86,6 +88,7 @@ def create(request) :
     return render(request, 'articles/new.html', context)
 
 
+@login_required
 def delete(request, pk) :
     # 삭제할 데이터 조회
     article = Article.objects.get(pk = pk)
@@ -135,7 +138,7 @@ def delete(request, pk) :
 #     }
 #     return render(request, 'articles/edit.html', context)
 
-
+@login_required
 def update(request, pk) :
     article = Article.objects.get(pk = pk)
     if request.method == 'POST' :
